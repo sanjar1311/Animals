@@ -16,3 +16,20 @@ var createElement = function (tagName, className, text) {
 
   return element;
 };
+
+const elDogImg = $_('.dogs-img');
+const elDogBtn = $_('.dogs-btn');
+
+elDogBtn.addEventListener('click', ()=> {
+  fetch('https://dog.ceo/api/breeds/image/random')
+  .then(response => {
+    if(response.status === 200) {
+      return response.json()
+    }
+  })
+  .then(response => {
+    if(response.status === 'success') {
+      elDogImg.src = response.message
+    }
+  })
+})
